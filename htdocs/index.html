@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>No such site</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+@font-face{
+    font-family: 'JetBrainsMono';
+    src: url('https://cdn.jsdelivr.net/gh/JetBrains/JetBrainsMono/web/woff2/JetBrainsMono-Regular.woff2') format('woff2'),
+    url('https://cdn.jsdelivr.net/gh/JetBrains/JetBrainsMono/web/woff/JetBrainsMono-Regular.woff') format('woff'),
+    url('https://cdn.jsdelivr.net/gh/JetBrains/JetBrainsMono/ttf/JetBrainsMono-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+html {
+    background: black;
+    color: lightgray;
+
+    padding: 0;
+    margin: 0;
+
+    width: 100vw;
+    height: 100vh;
+
+    font-family: 'JetBrainsMono';
+}
+
+body {
+    width: 100%;
+    height: 100%;
+}
+
+section, .header-break {
+    padding-bottom: 2em;
+}
+
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+
+.typewriter {
+    animation:
+            typing 20s steps(200, end),
+}
+        </style>
+    </head>
+    <body>
+        <section>
+            <div>
+                GET <span id='request-resource'>/</span> HTTP/1.1
+            </div>
+            <div>
+                Host: <span id="hostname">{{hostname}}</span>
+            </div>
+        </section>
+
+        <section>
+            <div class='header-break'>
+                <div class='post-space'>
+                    418 I'm a Teapot
+                </div>
+                <div>
+                    Server: MaddHatter (March Hair/v1)
+                </div>
+            </div>
+            <div>
+                <div>SWITCH PLACES!</div>
+                <div>The requested resource <span id="response-resource">/</span> was not found because there is no site at this address.</div>
+                <div>Unfortunately this also means there are no one to switch places with.</div>
+            </div>
+        </section>
+
+        <script type="application/javascript">
+function replaceString( selector, value ){
+	const element = document.querySelector(selector);
+	element.innerHTML = value;
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+	replaceString('#hostname', window.location.hostname);
+	const path = window.location.pathname;
+	replaceString('#request-resource', path);
+	replaceString('#response-resource', path);
+});
+        </script>
+    </body>
+</html>
